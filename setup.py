@@ -12,7 +12,7 @@ long_description = readme_file.read_text(encoding='utf-8') if readme_file.exists
 
 setup(
 	name="ncbi-tree",
-	version="1.0.0",
+	version="1.0.1",
 	author="NCBI-Tree Contributors",
 	author_email="",
 	description="ncbi-tree is an open source, cross-platform command-line tool for downloading the latest NCBI taxonomy database and converting it to Newick tree format (.tre), with optional plain-text visualization (.txt)",

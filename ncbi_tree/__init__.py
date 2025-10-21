@@ -4,7 +4,7 @@ AUTHOR: NCBI-Tree Contributors
 LICENSE: Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0)
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "NCBI-Tree Contributors"
 __license__ = "CC BY-NC 4.0"
 
