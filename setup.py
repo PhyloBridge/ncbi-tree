@@ -15,7 +15,7 @@ setup(
 	version="1.0.0",
 	author="NCBI-Tree Contributors",
 	author_email="",
-	description="Download NCBI taxonomy database and build phylogenetic trees in multiple formats (Newick, text, TSV) with comprehensive analysis - Cross-platform bioinformatics tool for taxonomy research",
+	description="ncbi-tree is an open source, cross-platform command-line tool for downloading the latest NCBI taxonomy database and converting it to Newick tree format (.tre), with optional plain-text visualization (.txt)",
 	long_description=long_description,
 	long_description_content_type="text/markdown",
 	url="https://github.com/phylobridge/ncbi-tree",
