@@ -1,0 +1,41 @@
+# Python
+**/__pycache__/
+*.so
+ENV/
+*env*/
+dist/
+venv/
+build/
+develop-eggs/
+var/
+lib/
+lib64/
+parts/
+sdist/
+wheels/
+eggs/
+.eggs/
+*.egg
+*.egg-info/
+.installed.cfg
+
+# NCBI taxonomy data files
+*.dmp
+*.prt
+*.tre
+*.tsv
+*.txt
+*.pkl
+*.tar.gz
+
+# System files
+**/._*
+**/.DS_Store
+**/.VolumeIcon.icns
+**/.Spotlight-V100
+**/.TemporaryItems
+**/.fseventsd
+**/Desktop.ini
+**/Thumbs.db
+**/.Trashes
+**/.fuse_hidden*
