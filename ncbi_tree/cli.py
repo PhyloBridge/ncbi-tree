@@ -1,5 +1,5 @@
 """
-VERSION: 2025-10-21
+VERSION: 2025-10-25
 AUTHOR: NCBI-Tree Contributors
 LICENSE: Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0)
 """
@@ -60,10 +60,15 @@ SEE ALSO:
 	parser.add_argument('--no-cache', '--clean', action='store_true', dest='no_cache', help='Remove intermediate files (tar.gz archive) after processing to save disk space')
 	parser.add_argument('--url', type=str, default=None, help='Custom download URL for taxonomy data (default: https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz)')
 	parser.add_argument('--no-sanitize', action='store_true', help='Disable name sanitization: keep original spaces, dashes, and special characters in taxon names')
+	parser.add_argument('--no-prompt-1', action='store_true', help='Automatically generate optional files without prompting (equivalent to answering "yes")')
+	parser.add_argument('--no-prompt-0', action='store_true', help='Skip optional files generation without prompting (equivalent to answering "no")')
 	parser.add_argument('--version', action='version', version=f'ncbi-tree {__version__}')
 	args = parser.parse_args()
 	if not args.output_directory:
 		parser.print_help()
+		sys.exit(1)
+	if args.no_prompt_1 and args.no_prompt_0:
+		print("[ERROR] Cannot specify both --no-prompt-1 and --no-prompt-0 simultaneously")
 		sys.exit(1)
 	start_time = time.time()
 	print("=" * 80)
@@ -104,9 +109,17 @@ SEE ALSO:
 		print(f"  - {output_path / 'output.NCBI.tree.tre'}")
 		print(f"  - {output_path / 'output.NCBI.report.txt'}")
 		print(f"  - {output_path / 'version.txt'}")
-		print("\n" + "=" * 80)
-		response = input("\nWould you like to generate optional files (output.NCBI.tree.txt, output.NCBI.named.tree.tre, output.NCBI.ID.to.name.tsv)? [y/N]: ").strip().lower()
-		if response in ['y', 'yes']:
+		print("\\n" + "=" * 80)
+		if args.no_prompt_1:
+			generate_optional = True
+			print("\\n[INFO] Automatically generating optional files (--no-prompt-1)")
+		elif args.no_prompt_0:
+			generate_optional = False
+			print("\\n[INFO] Skipping optional files generation (--no-prompt-0)")
+		else:
+			response = input("\\nWould you like to generate optional files (output.NCBI.tree.txt, output.NCBI.named.tree.tre, output.NCBI.ID.to.name.tsv)? [y/N]: ").strip().lower()
+			generate_optional = response in ['y', 'yes']
+		if generate_optional:
 			print("\n[INFO] Generating optional files...")
 			optional_start = time.time()
 			success, _ = build_ncbi_tree(

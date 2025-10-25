@@ -17,18 +17,12 @@ That's it! The tool will download the latest NCBI taxonomy, generate phylogeneti
 
 ## Features
 
-- [x] **Automatic Download**: Fetches the latest taxonomy data from NCBI FTP servers  
-- [x] **Version Tracking**: Automatically detects and records the exact server version  
-- [x] **Smart Caching**: Skips re-download and re-extraction when files already exist  
-- [x] **Progress Bars**: Visual feedback for downloads and extraction using tqdm  
-- [x] **Multiple Output Formats**: Newick with IDs only, Newick with names, text tree, TSV mapping  
-- [x] **Comprehensive Reports**: Detailed taxonomy analysis with rank distribution and depth statistics  
-- [x] **Name Sanitization**: By default inital letter is capitalized and space is replaced by `-`. Configurable name formatting with --no-sanitize option  
-- [x] **Interactive Mode**: Optional files generated on demand without re-reading data  
-- [x] **Merged Taxa Support**: Handles merged taxonomy IDs from merged.dmp  
-- [x] **Cross-Platform**: Works on Linux, macOS, and Windows  
-- [x] **Memory Efficient**: Reuses data in memory for optional file generation  
-- [x] **Error Handling**: Comprehensive error catching with user-friendly messages  
+- [x] **Automatic Download**: Fetches the latest taxonomy data from NCBI FTP servers
+- [x] **Version Tracking**: Automatically detects and records the exact server version
+- [x] **Smart Caching**: Skips re-download and re-extraction when files already exist
+- [x] **Merged Taxa Support**: Handles merged taxonomy IDs from merged.dmp
+- [x] **Name Sanitization**: By default inital letter is capitalized and space is replaced by `-`. Configurable name formatting with --no-sanitize option
+- [x] **Server-side compatibility**: No more blocking on user input in automated environments. Use `ncbi-tree ./output --no-prompt-1` to automatically generate all files (core + optional); Use `ncbi-tree ./output --no-prompt-0` to generate only core files, skip optional files.
 
 ## Installation
 
@@ -55,6 +49,16 @@ ncbi-tree ./output --url https://custom-mirror.org/taxdump.tar.gz
 
 # Combined options
 ncbi-tree ./output --no-cache --no-sanitize
+```
+
+### Server-side, non-blocking, no-interaction
+
+```bash
+# Automatically generate all files (core + optional)
+ncbi-tree ./output --no-prompt-1
+
+# Generate only core files, skip optional files
+ncbi-tree ./output --no-prompt-0
 ```
 
 ### Help
@@ -89,7 +93,7 @@ If you answer `y`, additional files will be generated **without re-reading data*
 
 By default, taxon names are sanitized for consistent display:
 - Spaces replaced with `-`
-- Existing `-` escaped as `<->`
+- Existing `-` escaped as `<->`, which will be eventually escaped back to `-`. Configurable by changing `name = name.replace('-', '<->')` in `sanitize_name` in `core.py`.
 - Title case applied
 - Special characters removed
 
@@ -127,17 +131,6 @@ NAME_PRIORITIES = {"genbank common name": 0, "scientific name": -1}
 
 **Note:** Priority value `-1` disables that name type, `>= 0` enables it (lower number = higher priority).
 
-## Example
-
-```bash
-$ ncbi-tree ./ncbi_output
-
-Output files:
-  - ./ncbi_output/output.NCBI.tree.tre
-  - ./ncbi_output/output.NCBI.tree.txt
-  - ./ncbi_output/version.txt
-```
-
 ## Requirements
 
 - Python 3.8 or higher
@@ -168,4 +161,5 @@ Contributions are welcome! Please feel free to submit issues or pull requests.
 
 ## Acknowledgments
 
-- NCBI for providing the taxonomy database
+- Schoch CL, et al. NCBI Taxonomy: a comprehensive update on curation, resources and tools. Database (Oxford). 2020: baaa062. [PubMed](https://www.ncbi.nlm.nih.gov/pubmed/32761142)
+- Sayers EW, et al. GenBank. Nucleic Acids Res. 2019. 47(D1):D94-D99. [PubMed](https://www.ncbi.nlm.nih.gov/pubmed/30365038)

@@ -1,5 +1,5 @@
 """
-VERSION: 2025-10-21
+VERSION: 2025-10-25
 AUTHOR: NCBI-Tree Contributors
 LICENSE: Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0)
 """

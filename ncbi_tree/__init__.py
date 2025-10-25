@@ -1,10 +1,10 @@
 """
-VERSION: 2025-10-21
+VERSION: 2025-10-25
 AUTHOR: NCBI-Tree Contributors
 LICENSE: Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0)
 """
 
-__version__ = "1.0.1"
+__version__ = "1.1.0"
 __author__ = "NCBI-Tree Contributors"
 __license__ = "CC BY-NC 4.0"
 
