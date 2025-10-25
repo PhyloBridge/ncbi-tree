@@ -12,8 +12,8 @@ from pathlib import Path
 from datetime import datetime
 from collections import defaultdict
 from typing import Dict, List, Tuple
-from functools import partial
 from tqdm import tqdm
+from functools import partial
 print = partial(print, flush=True)
 
 

@@ -11,9 +11,9 @@ import argparse
 import traceback
 from pathlib import Path
 from datetime import datetime
-from functools import partial
 from .core import download_and_extract_taxonomy, build_ncbi_tree
 from . import __version__
+from functools import partial
 print = partial(print, flush=True)
 
 
